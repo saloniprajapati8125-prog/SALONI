@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>National Print</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .logo-img{width:44px;height:44px;object-fit:contain}
+    .hero-text h1{font-size:2.25rem}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="logo" href="index.html">
+        <img class="logo-img" src="logo.png" alt="National Print logo">
+        <span class="brand">National Print</span>
+      </a>
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <span id="userLabel" style="margin-right:8px;font-weight:600;color:var(--muted);display:none"></span>
+        <a id="authLink" href="login.html">Login</a>
+        <a class="btn" href="shopping-bags.html">Shopping Bags</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Quality Printing & Custom Packaging</h1>
+          <p>Fast turnaround on printed bags, boxes and packaging supplies — designed for your brand.</p>
+          <p><a class="btn" href="shopping-bags.html">Explore Shopping Bags</a></p>
+        </div>
+        <div>
+          <div class="product-card">
+            <img src="shopping%20bag.png" alt="Shopping bag sample">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicesSection" class="section container">
+      <h2>Our Services</h2>
+      <div class="grid">
+        <div class="card">Custom Printed Shopping Bags</div>
+        <div class="card">Paper & Kraft Bags</div>
+        <div class="card">Laminated & Foil Finishes</div>
+      </div>
+      <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
+        <img src="shopping%20bag.png" alt="shopping bag" style="width:140px;border-radius:8px;box-shadow:0 6px 18px rgba(16,24,40,0.06)">
+        <div class="muted">Sample shopping bag — click <a href="shopping-bags.html">here</a> to view details.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>&copy; 2026 National Print</div>
+      <div class="muted">Contact: +91 12345 67890</div>
+    </div>
+  </footer>
+
+  <script>
+    function updateAuth(){
+      const logged = localStorage.getItem('np_logged') === '1';
+      const authLink = document.getElementById('authLink');
+      const services = document.getElementById('servicesSection');
+      if(authLink){
+        if(logged){
+          authLink.textContent = 'Logout';
+          authLink.href = '#';
+          authLink.onclick = function(e){ e.preventDefault(); localStorage.removeItem('np_logged'); localStorage.removeItem('np_user'); localStorage.removeItem('np_contact'); location.reload(); };
+        } else {
+          authLink.textContent = 'Login';
+          authLink.href = 'login.html';
+          authLink.onclick = null;
+        }
+      }
+      if(services){
+        if(!logged){
+          services.innerHTML = '<div class="card"><p class="muted">Please <a href="login.html">login</a> to view our services.</p></div>';
+        }
+      }
+      const userLabel = document.getElementById('userLabel');
+      if(userLabel){
+        const name = localStorage.getItem('np_user') || '';
+        if(logged && name){
+          userLabel.style.display = 'inline-block';
+          userLabel.textContent = 'Hi, ' + name;
+        } else {
+          userLabel.style.display = 'none';
+        }
+      }
+    }
+    updateAuth();
+  </script>
+</body>
+</html>

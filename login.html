@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - National Print</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .form-wrap{max-width:420px;margin:36px auto;padding:20px;background:#fff;border-radius:10px}
+    .form-row{margin-bottom:12px}
+    label{display:block;font-weight:600;margin-bottom:6px}
+    input{width:100%;padding:10px;border:1px solid #e6e6e9;border-radius:8px}
+  </style>
+</head>
+<body class="auth-page">
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="logo" href="index.html">
+        <img class="logo-img" src="logo.png" alt="National Print logo">
+        <span class="brand">National Print</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="shopping-bags.html">Shopping Bags</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="form-wrap card">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="form-row">
+            <label for="username">User name</label>
+            <input id="username" name="username" type="text" placeholder="Your name">
+          </div>
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Password">
+          </div>
+          <div class="form-row">
+            <label for="contact">Contact number</label>
+            <input id="contact" name="contact" type="tel" placeholder="e.g. +91 98765 43210">
+          </div>
+          <div class="form-row">
+            <button class="btn" type="submit">Sign in</button>
+          </div>
+        </form>
+        <script>
+          document.getElementById('loginForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            const user = document.getElementById('username').value.trim() || '';
+            const contact = document.getElementById('contact').value.trim() || '';
+            // Basic client-side demo auth (not secure)
+            localStorage.setItem('np_logged','1');
+            localStorage.setItem('np_user', user);
+            localStorage.setItem('np_contact', contact);
+            location.href = 'index.html';
+          });
+        </script>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>&copy; 2026 National Print</div>
+    </div>
+  </footer>
+</body>
+</html>
